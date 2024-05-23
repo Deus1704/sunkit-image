@@ -43,9 +43,9 @@ cont_rotated = hmi_map.rotate(order=3)
 ###############################################################################
 # Plot the rotated map.
 
-# fig = plt.figure()
-# ax = plt.subplot(projection=cont_rotated)
-# im = cont_rotated.plot(axes=ax)
+fig = plt.figure()
+ax = plt.subplot(projection=cont_rotated)
+im = cont_rotated.plot(axes=ax)
 
 
 ###############################################################################
@@ -53,12 +53,12 @@ cont_rotated = hmi_map.rotate(order=3)
 # resolution. This step ensures that running the algorithm on the full-resolution
 # image is not overly computationally expensive.
 
-# cont_rotated_resample = cont_rotated.resample((1024, 1024) * u.pixel)
+cont_rotated_resample = cont_rotated.resample((1024, 1024) * u.pixel)
 
 ###############################################################################
 # Next, we use the STARA function to detect sunspots in the resampled map.
 
-segs = stara(cont_rotated, limb_filter=10 * u.percent)
+segs = stara(cont_rotated_resample, limb_filter=10 * u.percent)
 
 ###############################################################################
 # Finally, we plot the resampled map along with the detected sunspots. We create
@@ -66,10 +66,10 @@ segs = stara(cont_rotated, limb_filter=10 * u.percent)
 # map, plot the resampled map, and overlay contours of the detected sunspots using
 # the ``contour`` method.
 
-# fig = plt.figure()
-# ax = plt.subplot(projection=cont_rotated_resample)
-# im = cont_rotated_resample.plot(axes=ax, autoalign=True)
-# ax.contour(segs, levels=0)
+fig = plt.figure()
+ax = plt.subplot(projection=cont_rotated_resample)
+im = cont_rotated_resample.plot(axes=ax, autoalign=True)
+ax.contour(segs, levels=0)
 
 
 ###############################################################################
@@ -78,17 +78,17 @@ segs = stara(cont_rotated, limb_filter=10 * u.percent)
 # on areas of interest. We define the coordinates of the rectangle to crop
 # in pixel coordinates.
 
-# bottom_left = cont_rotated_resample.pixel_to_world(240 * u.pix, 350 * u.pix)
-# top_right = cont_rotated_resample.pixel_to_world(310 * u.pix, 410 * u.pix)
+bottom_left = cont_rotated_resample.pixel_to_world(240 * u.pix, 350 * u.pix)
+top_right = cont_rotated_resample.pixel_to_world(310 * u.pix, 410 * u.pix)
 
-# # Create the submap using the world coordinates of the bottom left and top right corners.
-# hmi_submap = cont_rotated_resample.submap(bottom_left, top_right=top_right)
-# segs = stara(hmi_submap, limb_filter=10 * u.percent)
+# Create the submap using the world coordinates of the bottom left and top right corners.
+hmi_submap = cont_rotated_resample.submap(bottom_left, top_right=top_right)
+segs = stara(hmi_submap, limb_filter=10 * u.percent)
 
-# # Plot the submap along with the contours.
-# fig = plt.figure()
-# ax = plt.subplot(projection=hmi_submap)
-# im = hmi_submap.plot(axes=ax, autoalign=True)
-# ax.contour(segs, levels=0)
+# Plot the submap along with the contours.
+fig = plt.figure()
+ax = plt.subplot(projection=hmi_submap)
+im = hmi_submap.plot(axes=ax, autoalign=True)
+ax.contour(segs, levels=0)
 
-# plt.show()
+plt.show()
