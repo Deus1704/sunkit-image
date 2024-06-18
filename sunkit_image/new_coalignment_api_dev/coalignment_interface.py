@@ -122,6 +122,43 @@ def convert_array_to_map(array_obj, map_obj):
     return sunpy.map.Map(array_obj, header)
 
 
+def warn_user_about_nans(name, array, handle_nan):
+    """
+    Warn the user if there are NaNs in the input or template arrays.
+
+    Parameters
+    ----------
+    array : `numpy.ndarray`
+        The array to check for NaNs.
+
+    Returns
+    -------
+    `numpy.ndarray`
+        The input array.
+    
+    Raises
+    ------
+    ValueError
+        If the array contains NaN values and no method for handling is provided.
+    """
+    if not np.all(np.isfinite(array)):
+        if not handle_nan:
+            warnings.warn(
+                f"The {name} map has nonfinite entries. Please provide a way to handle NaN values "
+                "This could cause errors when calculating shift between two "
+                "images. Please make sure there are no infinity or "
+                "Not a Number values. For instance, replacing them with a "
+                "local mean. You can pass this logic for NaN handling as a function to the coalignment_interface. ",
+                SunpyUserWarning,
+                stacklevel=3,
+            )
+            return False
+        else:
+            array = handle_nan(array)
+            return array
+    return array
+
+
 def coalignment_interface(method, input_map, template_map, handle_nan=None):
     """
     Interface for performing image coalignment using a specified method.
@@ -154,33 +191,12 @@ def coalignment_interface(method, input_map, template_map, handle_nan=None):
     template_array = np.float64(template_map.data)
 
     # Warn user if any NANs, Infs, etc are present in the input or the template array
-    if not np.all(np.isfinite(input_array)):
-        if not handle_nan:
-            warnings.warn(
-                "The layer image has nonfinite entries. "
-                "This could cause errors when calculating shift between two "
-                "images. Please make sure there are no infinity or "
-                "Not a Number values. For instance, replacing them with a "
-                "local mean.",
-                SunpyUserWarning,
-                stacklevel=3,
-            )
-        else:
-            input_array = handle_nan(input_array)
-
-    if not np.all(np.isfinite(template_array)):
-        if not handle_nan:
-            warnings.warn(
-                "The template image has nonfinite entries. "
-                "This could cause errors when calculating shift between two "
-                "images. Please make sure there are no infinity or "
-                "Not a Number values. For instance, replacing them with a "
-                "local mean.",
-                SunpyUserWarning,
-                stacklevel=3,
-            )
-        else:
-            template_array = handle_nan(template_array)
+    input = warn_user_about_nans("input", input_array, handle_nan)
+    reference = warn_user_about_nans("template", template_array, handle_nan)
+    if isinstance(input, np.ndarray) :
+        input_array = input
+    if isinstance(reference, np.ndarray):
+        template_array = reference
 
     shifts = registered_methods[method](input_array, template_array)
     # Calculate the clipping required
