@@ -195,7 +195,7 @@ def match_template_coalign(input_array, template_array):
     Returns
     -------
     tuple
-        A tuple where the first element is the coaligned array and the second element is another tuple containing the 
+        A tuple where the first element is the coaligned array and the second element is another tuple containing the
         shifts in x and y directions (x_shift, y_shift),
     """
     corr = match_template(np.float64(input_array), np.float64(template_array))
