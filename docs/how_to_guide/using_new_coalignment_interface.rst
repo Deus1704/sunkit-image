@@ -34,10 +34,10 @@ Below is an example of how to use the :func:`sunkit_image.coalignment_module.int
 
     >>> from sunpy.map import Map
     >>> from sunkit_image.coalignment_module.interface import coalignment
-    >>> from sunpy.data import sample
+    >>> import  sunpy.data.sample
 
-    >>> reference_map = Map(sample.AIA_193_CUTOUT01_IMAGE)
-    >>> target_map = Map(sample.AIA_193_CUTOUT02_IMAGE)
+    >>> reference_map = Map(sunpy.data.sample.AIA_193_CUTOUT01_IMAGE)
+    >>> target_map = Map(sunpy.data.sample.AIA_193_CUTOUT02_IMAGE)
 
     >>> coaligned_map = coalignment(reference_map, target_map, method="match_template")
 
