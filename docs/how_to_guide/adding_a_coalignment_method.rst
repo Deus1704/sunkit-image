@@ -4,7 +4,7 @@
 Add a New Coalignment Method
 ****************************
 
-You can add a custom coalignment method in the sunkit-image package using the decorator :func:`sunkit_image.coalignment_module.util.decorators.register_coalignment_method`:
+You can add a custom coalignment method in the sunkit-image package using the decorator :func:`sunkit_image.coalignment_module.register_coalignment_method`:
 
 .. code-block:: python
 
