@@ -26,23 +26,12 @@ Function Requirements
 =====================
 Your coalignment function should:
 1. **Take Input Parameters**:
-    - `input_array`: The 2D array to be coaligned.
-    - `template_array`: The 2D template array to align to.
-2. **Compute Shifts**: Calculate the shifts in the x and y directions needed to align `input_array` with `template_array`.
-3. **Apply Shifts**: Apply these shifts to `input_array` to generate the coaligned array.
-4. **Return**: A tuple where the first element is another tuple containing the shifts `(x_shift, y_shift)`, and the second element is the coaligned array.
+    - ``input_array``: The 2D array to be coaligned.
+    - ``template_array``: The 2D template array to align to.
+2. **Compute Shifts**: Calculate the shifts in the x and y directions needed to align ``input_array`` with ``template_array``.
+3. **Apply Shifts**: Apply these shifts to ``input_array`` to generate the coaligned array.
+4. **Return**: A tuple where the first element is another tuple containing the shifts ``(x_shift, y_shift)``, and the second element is the coaligned array.
 
 Example Usage
 =============
-Once you have added your custom coalignment method, you can use it as follows:
-
-.. code-block:: python
-
-    >>> from sunkit_image.coalignment_module.util import coalign
-    >>> input_array = ...  # Your input array
-    >>> template_array = ...  # Your template array
-    >>> shifts, coaligned_array = coalign(input_array, template_array, method="my_coalign")
-
-See the docstring for :func:`~sunkit_image.coalignment_module.util.decorators.register_coalignment_method` for a detailed explanation of each of the decorator parameters and each of the required input parameters to the coalignment function.
-
-You can look in the `sunkit_image.coalignment_module` for examples of how to use this decorator.
+Once you have added your custom coalignment method, you can use it as discussed in this :ref:`_sunkit-image-how-to-guide-using-the-coalignment-interface` guide
