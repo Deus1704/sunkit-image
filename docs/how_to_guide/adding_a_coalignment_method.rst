@@ -1,4 +1,4 @@
-.. _sunkit-image-how-to-guide-adding-a-new-coalignment-method:
+.. _add-a-new-coalignment-method:
 
 ****************************
 Add a New Coalignment Method
@@ -41,4 +41,4 @@ Your coalignment function should:
 Example Usage
 =============
 
-Once you have added your custom coalignment method, you can use it as discussed in this :ref:`_sunkit-image-how-to-guide-using-the-coalignment-interface` guide
+Once you have added your custom coalignment method, you can use it as discussed in this :ref:`_using-the-coalignment-interface` guide
