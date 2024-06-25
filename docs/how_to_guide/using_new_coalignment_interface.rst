@@ -9,7 +9,7 @@ This guide explains how to use the coalignment interface in the sunkit-image pac
 Function Overview
 =================
 
-The :func:`sunkit_image.coalignment_module.coalignment` function performs image coalignment using a specified method that is registered using the decorator :func:`sunkit_image.coalignment_module.register_coalignment_method`. For registering a new method, please check the :ref:`_add-a-new-coalignment-method` guide.
+The :func:`sunkit_image.coalignment_module.coalignment` function performs image coalignment using a specified method that is registered using the decorator :func:`sunkit_image.coalignment_module.register_coalignment_method`. For registering a new method, please check the :doc:`adding_a_coalignment_method` guide.
 
 Refer to the docstring of :func:`sunkit_image.coalignment_module.coalignment` for detailed information on the parameters, return values, and exceptions.
 
@@ -50,7 +50,7 @@ The :func:`sunkit_image.coalignment_module.coalignment` function aligns the ``ta
 
 Registered Methods
 ==================
-Ensure that the coalignment method you intend to use is registered. You can add custom methods as described in :ref:`_add-a-new-coalignment-method`.
+Ensure that the coalignment method you intend to use is registered. You can add custom methods as described in :doc:`adding_a_coalignment_method`.
 
 Handling NaNs and Infs
 ======================
@@ -58,4 +58,4 @@ The :func:`sunkit_image.coalignment_module.coalignment` function includes a warn
 
 Further Reading
 ===============
-For more details on how to register new coalignment methods, refer to :ref:`_add-a-new-coalignment-method`.
+For more details on how to register new coalignment methods, refer to :doc:`adding_a_coalignment_method`.
