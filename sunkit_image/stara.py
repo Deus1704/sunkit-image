@@ -68,7 +68,7 @@ def stara(
 
     # Median filter to remove detections based on hot pixels
     m_pix = int((median_box / smap.scale[0]).to_value(u.pix))
-    med = median(data, square(m_pix), behavior="ndimage")
+    med = median(data, square(m_pix)) ### , behavior="ndimage") removed to support the sk image v0.19.3
 
     # Construct the pixel structuring element
     c_pix = int((circle_radius / smap.scale[0]).to_value(u.pix))
