@@ -30,7 +30,6 @@ def aia193_test_map():
     return sunpy.map.Map(aia_map)
 
 
-@pytest.mark.remote_data()
 @pytest.fixture()
 def aia193_test_downsampled_map(is_test_map, aia193_test_map):
     nx = (aia193_test_map.scale.axis1 * aia193_test_map.dimensions.x) / is_test_map.scale.axis1
