@@ -25,6 +25,9 @@ def is_test_map():
 @pytest.mark.remote_data()
 def test_coalignment(is_test_map):
     aia193_test_map = sunpy.map.Map(Fido.fetch(Fido.search(a.Time(start=is_test_map.meta["date_beg"], near=is_test_map.meta["date_avg"], end=is_test_map.meta["date_end"]), a.Instrument('aia'), a.Wavelength(193*u.angstrom))))
+    # Synchronize obstime and rsun to reduce transformation issues
+    aia193_test_map.meta['rsun_obs'] = is_test_map.meta['rsun_obs']
+    aia193_test_map.meta['date-obs'] = is_test_map.meta['date-obs']
     nx = (aia193_test_map.scale.axis1 * aia193_test_map.dimensions.x) / is_test_map.scale[0]
     ny = (aia193_test_map.scale.axis2 * aia193_test_map.dimensions.y) / is_test_map.scale[1]
     aia193_test_downsampled_map = aia193_test_map.resample(u.Quantity([nx, ny]))
