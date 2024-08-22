@@ -37,4 +37,4 @@ All functions are documented with clear and concise docstrings and can be found 
 Examples
 --------
 
-Please find the examples related to the :ref:`adding of coalignment method <sunkit-image-how-to-guide-add-a-new-coalignment-method>` and using a coalignment method here :ref:`sphx_glr_generated_gallery_adding_a_coalignment_method.py`
+Please find the examples related to the :ref:`adding of coalignment method <sunkit-image-how-to-guide-add-a-new-coalignment-method>` and using a coalignment method here `sphx_glr_generated_gallery_adding_a_coalignment_method.py`
