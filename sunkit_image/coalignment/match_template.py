@@ -101,7 +101,7 @@ def match_template_coalign(reference_array, target_array):
 
     Returns
     -------
-    AffineParams
+    AffineParams : `sunkit_image.coalignment.interface.AffineParams`
         A named tuple containing the following affine transformation parameters:
 
         - scale : list
@@ -110,7 +110,6 @@ def match_template_coalign(reference_array, target_array):
             The rotation angle in radians, which is fixed at 0.0 in this function.
         - translation : tuple
             A tuple containing the x and y translation values.
-
     """
     corr = match_template(np.float64(reference_array), np.float64(target_array))
     # Find the best match location
